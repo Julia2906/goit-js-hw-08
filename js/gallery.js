@@ -92,18 +92,14 @@ document.querySelectorAll(".prevent-download").forEach((link) => {
 });
 
 galleryListEl.addEventListener("click", (event) => {
-  if (event.target === event.currentTarget) {
+  if (!event.target.classList.contains("gallery-image")) {
     return;
   }
 
-  const galleryCardEl = event.target.closest(".gallery-item");
-
-  const imageSource = galleryCardEl.querySelector("img").dataset.source;
-
-  const imageInfo = images.find((el) => el.original === imageSource);
+  const imageSource = event.target.dataset.source;
 
   const instance = basicLightbox.create(`
-    <img src="${imageInfo.original}" width="800" height="600">
+    <img src="${imageSource}" alt="${event.target.alt}" width="1112" height="640">
 `);
 
   instance.show();
