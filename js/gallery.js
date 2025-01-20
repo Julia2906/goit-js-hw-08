@@ -70,8 +70,8 @@ const createGalleryCardTamplate = (image) => `
     <img
       class="gallery-image"
       src="${image.preview}"
-      data-source=${image.original}
-      alt=${image.description}
+      data-source="${image.original}"
+      alt="${image.description}"
     />
     </a>
  </li>
@@ -101,5 +101,10 @@ galleryListEl.addEventListener("click", (event) => {
   const imageSource = galleryCardEl.querySelector("img").dataset.source;
 
   const imageInfo = images.find((el) => el.original === imageSource);
-  console.log(imageInfo);
+
+  const instance = basicLightbox.create(`
+    <img src="${imageInfo.original}" width="800" height="600">
+`);
+
+  instance.show();
 });
